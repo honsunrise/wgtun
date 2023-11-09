@@ -1,0 +1,29 @@
+[package]
+name = "wgtun"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1"
+bitflags = "2.4"
+ipnet = "2.9"
+tracing = "0.1"
+
+[target.'cfg(target_family = "unix")'.dependencies]
+
+
+[target.'cfg(target_family = "windows")'.dependencies]
+ffi = { package = "wireguard-nt-sys", version = "0.1.0", path = "../wireguard-nt-sys" }
+
+widestring = "1.0.2"
+windows-sys = { version = "0.48", features = [
+  "Win32_Networking_WinSock",
+  "Win32_NetworkManagement_Ndis",
+] }
+windows = { version = "0.51", features = [
+  "Win32_Foundation",
+  "Win32_Networking_WinSock",
+  "Win32_NetworkManagement_IpHelper",
+  "Win32_NetworkManagement_Ndis",
+  "Win32_Networking_WinSock",
+] }
